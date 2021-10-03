@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  # {{ .Release.Name }} 表示要置換為 Release 物件中的 Name 屬性
+  name: {{ .Release.Name }}-configmap
+  namespace: default
+data:
+  config.json: |
+    {
+      "port": ":8808",
+      "enableGinConsoleLog": true,
+      "enableGinFileLog": true,
+      "Logging": {
+        "loglevel": "info",
+        "logFilename": "logs/server.log",
+        "logMaxSize": 10,
+        "logMaxBackups": 10,
+        "logMaxAge": 30
+      },
+      "mgAddrs": "127.0.0.1:27017",
+      "mgDbName": "userdb",
+      "mgDbUsername": "users-admin",
+      "mgDbPassword": "1qaz2wsx",
+      "jwtSecretPassword": "bruce",
+      "issuer": "microservice"
+    }
