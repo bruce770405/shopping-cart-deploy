@@ -30,10 +30,17 @@ spec:
       serviceAccountName: {{ include "user-service.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ .Release.Name }}-configmap # mapping configmap to volume
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+          volumeMounts:
+            - mountPath: /etc/config # mapping configmap to volume
+              name: config-volume
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
@@ -51,17 +58,17 @@ spec:
 {{/*            httpGet:*/}}
 {{/*              path: /*/}}
 {{/*              port: http*/}}
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+{{/*          resources:*/}}
+{{/*            {{- toYaml .Values.resources | nindent 12 }}*/}}
+{{/*      {{- with .Values.nodeSelector }}*/}}
+{{/*      nodeSelector:*/}}
+{{/*        {{- toYaml . | nindent 8 }}*/}}
+{{/*      {{- end }}*/}}
+{{/*      {{- with .Values.affinity }}*/}}
+{{/*      affinity:*/}}
+{{/*        {{- toYaml . | nindent 8 }}*/}}
+{{/*      {{- end }}*/}}
+{{/*      {{- with .Values.tolerations }}*/}}
+{{/*      tolerations:*/}}
+{{/*        {{- toYaml . | nindent 8 }}*/}}
+{{/*      {{- end }}*/}}

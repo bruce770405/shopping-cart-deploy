@@ -1,7 +1,6 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  # {{ .Release.Name }} 表示要置換為 Release 物件中的 Name 屬性
   name: {{ .Release.Name }}-configmap
   namespace: default
 data:
