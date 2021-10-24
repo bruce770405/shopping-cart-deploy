@@ -1,0 +1,30 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: platform-virtual-service
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - platform-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /user-service
+      rewrite:
+        uri: "/"
+      route:
+        - destination:
+            host: user-service
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /shopping-cart-service
+      rewrite:
+        uri: "/"
+      route:
+        - destination:
+            host: shopping-cart-service
+            port:
+              number: 80

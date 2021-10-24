@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shopping-cart-configmap
+  namespace: default
+  labels:
+    app: shopping-cart-service
+data:
+  config.json: |
+    {
+      "port": ":8809",
+      "enableGinConsoleLog": true,
+      "enableGinFileLog": false,
+      "Logging": {
+        "loglevel": "info",
+        "logFilename": "logs/server.log",
+        "logMaxSize": 10,
+        "logMaxBackups": 10,
+        "logMaxAge": 30
+      },
+      "datasource": {
+        "mgAddrs": "mongodb:27017",
+        "mgDbName": "shopping-db",
+        "mgDbUsername": "users-admin",
+        "mgDbPassword": "1qaz2wsx"
+      },
+      "redis": {
+        "redisHost": "localhost:6379",
+        "redisPassword": ""
+      },
+      "authAddr": "http://127.0.0.1:8808",
+      "jwtSecretPassword": "bruce",
+      "issuer": "microservice"
+    }

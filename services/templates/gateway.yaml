@@ -4,7 +4,7 @@ metadata:
   name: platform-gateway
 spec:
   selector:
-    istio: ingressgateway # 我们希望把哪個 pod 暴露為 Istio 路由器
+    istio: ingressgateway
   servers:
     - hosts:
         - "*"
@@ -17,16 +17,6 @@ spec:
       port:
         name: https
         number: 443
-        protocol: HTTPS
-      tls:
-        mode: SIMPLE
-        privateKey: /etc/istio/ingressgateway-certs/tls.key
-        serverCertificate: /etc/istio/ingressgateway-certs/tls.crt
-    - hosts:
-        - "*"
-      port:
-        name: https_2041
-        number: 2041
         protocol: HTTPS
       tls:
         mode: SIMPLE
