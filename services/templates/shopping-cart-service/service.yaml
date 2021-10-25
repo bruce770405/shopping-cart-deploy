@@ -8,9 +8,9 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+    - name: http
+      port: 80
       protocol: TCP
-      name: http
+      targetPort: {{ .Values.service.port.shoppingCart  }}
   selector:
     app: shopping-cart-service

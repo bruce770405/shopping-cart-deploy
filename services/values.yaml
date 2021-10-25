@@ -38,7 +38,9 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port:
+    shoppingCart: 8809
+    user: 8808
 
 ingress:
   enabled: false

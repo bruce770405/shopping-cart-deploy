@@ -8,7 +8,7 @@ metadata:
 data:
   config.json: |
     {
-      "port": ":8808",
+      "port": {{ .Values.service.port.user  }},
       "enableGinConsoleLog": true,
       "enableGinFileLog": true,
       "Logging": {
