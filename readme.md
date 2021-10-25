@@ -1,6 +1,8 @@
 
 
 ## Microservice Deploy Demo
+![k8s cover](https://github.com/bruce770405/shopping-cart-deploy/blob/main/imgs/cover.png)
+
 * Sample Microservice Apps repository https://github.com/bruce770405/go-shopping-cart
 * Minikube https://minikube.sigs.k8s.io/docs/
 * istio https://istio.io
