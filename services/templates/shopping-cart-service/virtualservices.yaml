@@ -11,5 +11,5 @@ spec:
   http:
     - route:
         - destination:
-            host: user-service
+            host: shopping-cart-service
             subset: v1
