@@ -16,7 +16,7 @@ spec:
       version: v1
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.podAnnotations.userService }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -30,6 +30,7 @@ spec:
       {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      serviceAccountName: user-service-v1
       volumes:
         - name: config-volume
           configMap:
@@ -41,11 +42,11 @@ spec:
           volumeMounts:
             - mountPath: /etc/config # mapping configmap to volume
               name: config-volume
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository.userService }}:{{ .Values.image.tag.userService | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8808
+              containerPort: {{ .Values.service.port.user  }}
               protocol: TCP
           envFrom:
             - configMapRef:

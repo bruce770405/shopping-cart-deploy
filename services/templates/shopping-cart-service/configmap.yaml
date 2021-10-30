@@ -28,7 +28,7 @@ data:
         "redisHost": "localhost:6379",
         "redisPassword": ""
       },
-      "authAddr": "http://127.0.0.1:8808",
+      "authAddr": "user-service:8808",
       "jwtSecretPassword": "bruce",
       "issuer": "microservice"
     }

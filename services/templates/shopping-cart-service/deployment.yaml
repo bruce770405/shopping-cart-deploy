@@ -16,7 +16,7 @@ spec:
       version: v1
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.podAnnotations.shoppingCartService }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -41,7 +41,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/config # mapping configmap to volume
               name: config-volume
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository.shoppingCartService }}:{{ .Values.image.tag.shoppingCartService | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http

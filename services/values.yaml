@@ -5,10 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository:
+    shoppingCartService: shopping-cart-service
+    userService: user-service
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag:
+    shoppingCartService: v1.0.0
+    userService: v1.0.0
+  pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""
@@ -23,7 +27,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: {}
+podAnnotations:
+  shoppingCartService: {}
+  userService: {}
 
 podSecurityContext: {}
   # fsGroup: 2000

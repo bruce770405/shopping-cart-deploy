@@ -6,7 +6,6 @@ metadata:
   labels:
     app: user-service
 spec:
-  type: {{ .Values.service.type }}
   ports:
     - name: http
       port: 80

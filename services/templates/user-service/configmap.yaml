@@ -18,7 +18,7 @@ data:
         "logMaxBackups": 10,
         "logMaxAge": 30
       },
-      "mgAddrs": "mongodb:27017",
+      "mgAddrs": "mongodb.service:27017",
       "mgDbName": "userdb",
       "mgDbUsername": "users-admin",
       "mgDbPassword": "1qaz2wsx",
