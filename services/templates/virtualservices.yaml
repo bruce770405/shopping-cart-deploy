@@ -12,7 +12,7 @@ spec:
         - uri:
             prefix: /user-service
       rewrite:
-        uri: "/"
+        uri: " "
       route:
         - destination:
             host: user-service
@@ -22,7 +22,7 @@ spec:
         - uri:
             prefix: /shopping-cart-service
       rewrite:
-        uri: "/"
+        uri: " "
       route:
         - destination:
             host: shopping-cart-service

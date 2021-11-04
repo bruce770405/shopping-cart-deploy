@@ -51,14 +51,24 @@ spec:
           envFrom:
             - configMapRef:
                 name: user-configmap
-{{/*          livenessProbe:*/}}
-{{/*            httpGet:*/}}
-{{/*              path: /*/}}
-{{/*              port: http*/}}
-{{/*          readinessProbe:*/}}
-{{/*            httpGet:*/}}
-{{/*              path: /*/}}
-{{/*              port: http*/}}
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: {{ .Values.service.port.user  }}
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 3
+            failureThreshold: 3
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.service.port.user  }}
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 3
+            failureThreshold: 3
+            successThreshold: 1
 {{/*          resources:*/}}
 {{/*            {{- toYaml .Values.resources | nindent 12 }}*/}}
 {{/*      {{- with .Values.nodeSelector }}*/}}

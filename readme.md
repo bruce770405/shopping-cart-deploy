@@ -37,4 +37,22 @@
    ```
    $ istioctl kube-inject -f my-websites.yaml - o my-websites-with-proxy.yaml
    ```
-   
+  
+## helm commands
+* install
+  ```
+  $ helm install -n {namespace-name} {helm-chart-name} . -f ./values.yaml
+  ```
+* upgrade
+  ```
+  $ helm upgrade -n {namespace-name} {helm-chart-name} . -f ./values.yaml
+  ```
+
+## another maybe useful
+* minikube demo use
+   ```
+   $ export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+   $ export INGRESS_HOST=$(minikube ip)
+   $ minikube tunnel
+   $ export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+   ```

@@ -8,7 +8,7 @@ metadata:
 data:
   config.json: |
     {
-      "port": {{ .Values.service.port.user  }},
+      "port": ":{{ .Values.service.port.user  }}",
       "enableGinConsoleLog": true,
       "enableGinFileLog": true,
       "Logging": {
@@ -18,7 +18,7 @@ data:
         "logMaxBackups": 10,
         "logMaxAge": 30
       },
-      "mgAddrs": "mongodb.service:27017",
+      "mgAddrs": "mongo:27017",
       "mgDbName": "userdb",
       "mgDbUsername": "users-admin",
       "mgDbPassword": "1qaz2wsx",

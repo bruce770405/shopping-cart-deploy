@@ -1,17 +1,29 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
-  name: mongo
+  name: mongodb-atlas-external-mesh
 spec:
   hosts:
-    - mongodb.service
-  addresses:
-    - 192.168.0.6/32
+    - cluster0-shard-00-00.y75ao.mongodb.net
+    - cluster0-shard-00-01.y75ao.mongodb.net
+    - cluster0-shard-00-02.y75ao.mongodb.net
   ports:
     - number: 27017
-      name: tcp
+      name: mongo
       protocol: TCP
   location: MESH_EXTERNAL
-  resolution: STATIC
-  endpoints:
-    - address: 192.168.0.6
+  resolution: DNS
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: redis
+spec:
+  hosts:
+    - redis.cluster0.net
+  resolution: DNS
+  location: MESH_EXTERNAL
+  ports:
+    - number: 6379
+      name: tcp
+      protocol: REDIS
