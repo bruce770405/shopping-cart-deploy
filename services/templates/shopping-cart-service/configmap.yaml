@@ -8,7 +8,7 @@ metadata:
 data:
   config.json: |
     {
-      "port": {{ .Values.service.port.shoppingCart  }},
+      "port": ":{{ .Values.service.port.shoppingCart  }}",
       "enableGinConsoleLog": true,
       "enableGinFileLog": false,
       "Logging": {
