@@ -4,26 +4,12 @@ metadata:
   name: mongodb-atlas-external-mesh
 spec:
   hosts:
-    - 0.mongodb.net
-    - 1.mongodb.net
-    - 2.mongodb.net
+    - cluster0-shard-00-00.y75ao.mongodb.net
+    - cluster0-shard-00-01.y75ao.mongodb.net
+    - cluster0-shard-00-02.y75ao.mongodb.net
   ports:
     - number: 27017
       name: mongo
       protocol: TCP
   location: MESH_EXTERNAL
-  resolution: DNS
----
-apiVersion: networking.istio.io/v1alpha3
-kind: ServiceEntry
-metadata:
-  name: redis
-spec:
-  hosts:
-    - redis.cluster0.net
-  resolution: DNS
-  location: MESH_EXTERNAL
-  ports:
-    - number: 6379
-      name: tcp
-      protocol: REDIS
+  resolution: NONE
