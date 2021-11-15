@@ -25,7 +25,7 @@ data:
         "mgDbPassword": "1qaz2wsx"
       },
       "redis": {
-        "redisHost": "localhost:6379",
+        "redisHost": "redis:6379",
         "redisPassword": ""
       },
       "authAddr": "user-service:8808",
