@@ -1,16 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "redis-test.fullname" . }}
+  name: redis
+  namespace: default
   labels:
-    {{- include "redis-test.labels" . | nindent 4 }}
+    app: redis
+    version: v1
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "redis-test.selectorLabels" . | nindent 6 }}
+      app: redis
+      version: v1
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +21,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "redis-test.selectorLabels" . | nindent 8 }}
+        app: redis
+        version: v1
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "redis-test.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -55,7 +58,7 @@ spec:
         emptyDir: {}
       - name: config
         configMap:
-          name: example-redis-config
+          name: redis-configmap
           items:
             - key: redis-config
               path: redis.conf
