@@ -10,8 +10,8 @@ image:
     userService: user-service
   # Overrides the image tag whose default is the chart appVersion.
   tag:
-    shoppingCartService: v1.0.0
-    userService: v1.0.0
+    shoppingCartService: 1.0.0
+    userService: 1.0.0
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
